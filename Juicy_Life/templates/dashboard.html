@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% set page = 'dashboard' %}
+
+{% block title %}Dashboard - Juicy Life{% endblock %}
+
+{% block content %}
+<div class="main">
+<div class="header">
+<h2 style="font-size:18px;color:#0f172a">Dashboard</h2>
+<button onclick="location.reload()" style="background:#16a34a;color:white;border:none;padding:7px 14px;border-radius:8px;font-weight:700;cursor:pointer">Refresh</button>
+</div>
+
+<div class="grid">
+<div class="card c1"><span class="icon">📦</span><small>Total Products</small><b id="totalProducts">0</b></div>
+<div class="card c2"><span class="icon">📊</span><small>Total Stock Qty</small><b id="totalQty">0</b></div>
+<div class="card c4"><span class="icon">🛒</span><small>Purchase Today</small><b id="purchaseToday">0</b></div>
+<div class="card c6"><span class="icon">💰</span><small>Today's Sales</small><b id="todaySales">₹0</b></div>
+
+<div class="card c6" style="border:2px solid #bbf7d0"><span class="icon">📈</span><small>Today's PROFIT (Selling - Cost)</small><b id="todayProfit">₹0</b></div>
+<div class="card c5"><span class="icon">💳</span><small>Total Sales All Time</small><b id="allSales">₹0</b></div>
+<div class="card c5" style="border:2px solid #22c55e"><span class="icon">🏆</span><small>Total PROFIT All Time (daily profits − wastage loss)</small><b id="allProfit">₹0</b></div>
+<div class="card c3"><span class="icon">⚠️</span><small>Low Stock / Out</small><b id="lowStock">0</b></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:12px;margin-top:14px">
+<div class="white">
+<h4 style="font-size:13px">⏰ Expiry Alert</h4>
+<table><thead><tr>
+  <th>Fruit</th>
+  <th>Expiry</th>
+  <th>Days Left</th>
+</tr></thead>
+<tbody id="expiryTable"></tbody></table>
+</div>
+
+<div class="white">
+<h4 style="font-size:13px">🧾 Today's Sales</h4>
+<table><thead><tr>
+  <th>Customer</th>
+  <th>Sales</th>
+  <th>Cost</th>
+  <th>Profit</th>
+  <th>Time</th>
+</tr></thead>
+<tbody id="salesTable"></tbody></table>
+</div>
+</div>
+
+<div class="white" style="margin-top:12px">
+<h4 style="font-size:13px">📦 Stock Overview</h4>
+<table><thead><tr>
+  <th>Fruit</th>
+  <th>Stock</th>
+  <th>Cost Price</th>
+  <th>Selling Price</th>
+  <th>Profit / Glass</th>
+</tr></thead>
+<tbody id="stockOverview"></tbody></table>
+</div>
+</div>
+{% endblock %}

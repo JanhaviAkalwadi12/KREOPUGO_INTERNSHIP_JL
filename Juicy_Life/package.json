@@ -1,0 +1,9 @@
+{
+  "name": "juicy-life",
+  "version": "1.0.0",
+  "description": "Juicy Life - Asli Phal Asli Taste Student Project",
+  "private": true,
+  "scripts": {
+    "start": "python app.py"
+  }
+}
