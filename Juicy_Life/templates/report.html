@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% set page = 'report' %}
+
+{% block title %}Juicy Life - Reports{% endblock %}
+
+{% block content %}
+<div class="main">
+<h2>Reports</h2>
+<div class="filters">
+  <select id="period" onchange="renderAll()">
+    <option value="1">Today</option>
+    <option value="15">Last 15 Days</option>
+    <option value="30" selected>Last 1 Month</option>
+    <option value="90">Last 3 Months</option>
+    <option value="9999">All Time</option>
+  </select>
+  <select id="wReason" onchange="renderWastage()">
+    <option value="ALL">All Wastage</option>
+    <option value="Rotten">Rotten Only</option>
+    <option value="Damaged">Damaged Only</option>
+    <option value="Expired">Expired Only</option>
+  </select>
+  <button onclick="renderAll()" style="background:#16a34a;color:white;padding:10px;border-radius:10px;border:none;cursor:pointer">Refresh Data</button>
+  <button onclick="clearAllData()" style="background:#dc2626;color:white;padding:10px;border-radius:10px;border:none;cursor:pointer">Reset All to Zero</button>
+</div>
+
+<div class="stats">
+  <div class="stat green"><h3 id="totalSales">₹0</h3><p>Total Sales</p><small id="salesCount">0 bills</small></div>
+  <div class="stat blue"><h3 id="totalProfit">₹0</h3><p>Total Profit</p></div>
+  <div class="stat red"><h3 id="totalWastageLoss">₹0</h3><p>Wastage Loss</p><small id="wastageQty">0 pcs</small></div>
+  <div class="stat dark"><h3 id="netProfit">₹0</h3><p>Net Profit</p></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div class="card">
+<h3>Wastage Report <span id="wTitle"></span></h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0">
+  <div style="background:#fef2f2;padding:10px;border-radius:8px;text-align:center"><b id="rRotten">0 pcs / ₹0</b><br><small>Rotten</small></div>
+  <div style="background:#fffbeb;padding:10px;border-radius:8px;text-align:center"><b id="rDamage">0 pcs / ₹0</b><br><small>Damaged</small></div>
+  <div style="background:#fff7ed;padding:10px;border-radius:8px;text-align:center"><b id="rExpiry">0 pcs / ₹0</b><br><small>Expired</small></div>
+</div>
+
+<table><thead><tr>
+  <th>Date</th>
+  <th>Fruit</th>
+  <th>Qty</th>
+  <th>Reason</th>
+  <th>Loss</th>
+</tr></thead>
+<tbody id="wBody"></tbody></table>
+</div>
+<div class="card">
+<h3>Sales & Profit</h3>
+<table><thead><tr>
+  <th>Date</th>
+  <th>Items</th>
+  <th>Sale</th>
+  <th>Cost</th>
+  <th>Profit</th>
+</tr></thead>
+<tbody id="sBody"></tbody></table>
+<div style="margin-top:15px;padding:12px;background:#f0fdf4;border-radius:8px">Total Sales: <b id="sumSales">₹0</b> | Cost: <b id="sumCost">₹0</b> | Profit: <b id="sumProfit">₹0</b></div>
+</div>
+</div>
+</div>
+{% endblock %}
