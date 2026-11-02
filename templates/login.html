@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% set page = 'login' %}
+
+{% block head_extra %}<meta name="viewport" content="width=device-width, initial-scale=1.0">{% endblock %}
+{% block title %}Juicy Life - Login{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<div class="login-box">
+  <h1>Login Page</h1>
+  <form method="POST" action="{{ url_for('login') }}" id="loginForm">
+  <input type="hidden" name="next" value="{{ next or '' }}">
+  <label>Email Address</label>
+  <input type="text" id="email" name="email" placeholder="" autocomplete="off">
+  
+  <label>Password</label>
+  <input type="password" id="pass" name="password" placeholder="" autocomplete="new-password">
+  
+  <div style="margin:10px 0"><input type="checkbox" style="width:auto"> Remember me</div>
+  
+  <button type="submit">Login</button>
+  </form>
+  <div class="link">Don't have account? <span style="color:#f97316">Sign Up</span></div>
+  <p id="err" style="color:red;text-align:center;margin-top:10px;font-size:13px">{{ error or '' }}</p>
+</div>
+
+{% endblock %}

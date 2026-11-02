@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% set page = 'stock' %}
+
+{% block title %}Juicy Life - Stock {% endblock %}
+
+{% block content %}
+<div class="main">
+  <h2>Inventory Management</h2>
+  <div class="grid">
+    <div class="stat green"><h3 id="totalItems">0</h3><p>Total Items</p></div>
+    <div class="stat blue"><h3 id="totalQty">0</h3><p>Total Stock Qty</p></div>
+    <div class="stat yellow"><h3 id="lowStock">0</h3><p>Low Stock (&lt;10)</p></div>
+  </div>
+
+  
+
+  <div class="grid-wastage">
+    <div class="card">
+      <h3>5. Wastage Module</h3>
+      <label>Fruit</label><select id="wFruit" onchange="updateLotDropdown()"></select>
+      <label>Lot - FIFO</label><select id="wLot" onchange="showLotInfo()"></select>
+      <div id="lotInfo" style="background:#f0fdf4;padding:8px;border-radius:6px;font-size:11px;margin-top:6px;min-height:40px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+        <div><label>Wasted Qty</label><input id="wQty" type="number" placeholder="2"></div>
+        <div><label>Reason</label><select id="wReason"><option>Rotten</option><option>Damaged</option><option>Expired</option></select></div>
+      </div>
+      <button class="btn-brown" onclick="addWastage()">Deduct from Stock</button>
+      <hr style="margin:12px 0">
+      <b style="font-size:12px">Loss = Qty × Cheapest</b>
+      <table><thead><tr><th>Date</th><th>Fruit</th><th>Qty</th><th>Loss</th></tr></thead><tbody id="lossBody"></tbody></table>
+      Total Loss: ₹<b><span id="totalLoss">0</span></b>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Current Stock <span style="font-size:11px;color:#16a34a"></span></h3>
+        <input type="text" id="search" placeholder="Search..." onkeyup="renderStockTableOnly()" style="width:160px">
+      </div>
+      <div id="alerts" style="margin-top:8px"></div>
+      <table><thead><tr><th>Name</th><th>Price</th><th>Qty Left</th><th>Total Qty</th><th>Cheapest</th><th>Format</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead><tbody id="stockBody"></tbody></table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3> Juice Selling Price</h3>
+    <p style="font-size:11px;color:#64748b;margin-bottom:10px">Fruit → Apple Juice, Mango Juice. Cost = Cheapest. Profit = Selling - Cost.</p>
+    <div style="display:grid;grid-template-columns:2fr 1fr auto;gap:10px;align-items:end;max-width:500px">
+      <div><label>Juice Name</label><select id="spFruit"></select></div>
+      <div><label>Selling Price ₹</label><input id="spPrice" type="number" placeholder="e.g. 50"></div>
+      <div><button class="btn-green" onclick="saveSellingPrice()" style="padding:11px 20px">Save</button></div>
+    </div>
+    <table style="margin-top:15px"><thead>
+      <tr><th>Juice</th><th>Cost</th>
+        <th>Selling Price</th>
+        <th>Profit / Glass</th>
+        <th>Action</th></tr>
+      </thead><tbody id="spBody"></tbody></table>
+  </div>
+
+</div>
+{% endblock %}

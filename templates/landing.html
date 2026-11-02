@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% set page = 'landing' %}
+
+{% block head_extra %}<meta name="viewport" content="width=device-width, initial-scale=1.0">{% endblock %}
+{% block title %}Juicy Life - Asli Phal Asli Taste{% endblock %}
+
+{# the landing page has its own top navigation, so the app sidebar is left out #}
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+
+<nav>
+  <div class="logo"><img src="{{url_for('static', filename='images/logo.png')}}" align="left" width="200" height="50"></div>
+  <div class="navlinks">
+    <a href="#hero"><b>Home</b></a>
+    <a href="#flavors"><b>Flavors</b></a>
+    <a href="#about"><b>About Us</b></a>
+    <a href="#contact"><b>Contact</b></a>
+  </div>
+  <a class="btn-green" href="{{ url_for('dashboard') }}" id="orderBtn">DASHBOARD</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="slide s1 active">
+    <div class="content"><h4>JUICY LIFE</h4><h1>Bringing Back<br>the nostalgia</h1><p>100% Real Fruit, Childhood Style Fizz. Asli Phal, Asli Taste.</p></div>
+    <div class="bottle-wrap"><img class="bottle" src="{{url_for('static', filename='images/CoconutBottle.png')}}" alt="bottle"></div>
+  </div>
+  <div class="slide s2">
+    <div class="content"><h4>JUICY LIFE</h4><h1>Be a franchise<br>with Juicy Life</h1><p>Own Your City's Most Loved Cold-Pressed Juice Brand.</p></div>
+    <div class="bottle-wrap"><img class="bottle" src="{{url_for('static', filename='images/PomogranteBottle.png')}}" alt="bottle"></div>
+  </div>
+  <div class="slide s3">
+    <div class="content"><h4>JUICY LIFE</h4><h1>Join India's Top<br>Juicy Life Brand</h1><p>India's fastest growing real fruit Juicy Life brand.</p></div>
+    <div class="bottle-wrap"><img class="bottle" src="{{url_for('static',filename='images/mangobottle.png')}}" alt="bottle"></div>
+  </div>
+  <div class="dots"><div class="dot active" onclick="go(0)"></div><div class="dot" onclick="go(1)"></div><div class="dot" onclick="go(2)"></div></div>
+  <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,40 C360,120 720,0 1080,40 C1260,60 1380,80 1440,40 L1440,120 L0,120 Z" fill="#f9f9f6"></path></svg>
+</div>
+
+<div class="strip" id="about">
+  <div class="bottles-row">
+    <img src="{{url_for('static', filename='images/mangobottle1.png')}}">
+    <img src="{{url_for('static', filename='images/orangebottle1.png')}}">
+    <img src="{{url_for('static', filename='images/pomogranatebottle1.png')}}">
+    <img src="{{url_for('static', filename='images/pineapplebottle1.png')}}">
+    <img src="{{url_for('static', filename='images/litchibottle1.png')}}">
+    <img src="{{url_for('static', filename='images/coconutbottle1.png')}}">
+  </div>
+
+  <div class="welcome">
+    <h1 style="font-family: Georgia;font-size:30px;font-style:italic;font-weight:bold;">Welcome to Juicy Life</h1>
+    <p><b><h5>Juicy Life is bringing back the nostalgia of Childhoods with 100% real fruit. We source mangoes, oranges, pomegranates directly from farms, cold-press them, and add natural fizz. No added sugar, no preservatives.</h5></b></p>
+    <h1 style="font-family:Georgia;font-size:30px;font-style:italic;font-weight:bold; margin-top:30px">Our Legacy</h1>
+    <p><b><h5>Started in Dharwad, inspired by childhood memories. Our mission is simple - Asli Phal, Asli Taste. Squeeze The Day!</h5></b></p>
+    <h1 style="font-family:Georgia;font-size:30px;font-style:italic;font-weight:bold;margin-top:30px">Join Our Journey</h1>
+    <p><b><h5>With our unique flavours, we are now expanding across India. Be a part of India's most loved real fruit sparkling brand.</h5></b></p>
+  </div>
+</div>
+
+<div class="contact" id="contact" align="left">
+  <div class="c-left">
+    <h2>Contact Us</h2>
+    <div class="form">
+      <input placeholder="Full Name"><input placeholder="Phone Number">
+      <input placeholder="Email" style="grid-column:span 2">
+      <textarea placeholder="Message"></textarea>
+      <a class="btn-y" style="grid-column:span 2;text-align:center" href="#">Submit Now</a>
+    </div>
+    </div>
+  <div><h4>LOCATION<br></h4>Juicy Life Foods<br>Dharwad, Karnataka<br>India</div><br><br>
+  <div><h4>PHONE NUMBER<br></h4>+91 98765 43210<br>+91 98765 43211</div><br><br>
+  <div><h4>EMAIL<br></h4>hello@juicylife.in<br>franchise@juicylife.in</div>
+</div>
+
+<div class="gallery" id="flavors" style="text-align: center;">
+  <h2>Our Flavors</h2>
+  <div class="grid">
+    <div class="card" data-href="{{ url_for('stock') }}" onclick="location.href=this.dataset.href"><img src="{{ url_for('static', filename='images/mangobottle.png') }}" alt="Mango"><div class="overlay">Mango Fizz</div></div>
+    <div class="card" data-href="{{ url_for('stock') }}" onclick="location.href=this.dataset.href"><img src="{{ url_for('static', filename='images/Orangebottle.png') }}" alt="Orange"><div class="overlay">Orange Pop</div></div>
+    <div class="card" data-href="{{ url_for('stock') }}" onclick="location.href=this.dataset.href"><img src="{{ url_for('static', filename='images/PomogranteBottle.png') }}" alt="Pomegranate"><div class="overlay">Pomogranate Spark</div></div>
+    <div class="card" data-href="{{ url_for('stock') }}" onclick="location.href=this.dataset.href"><img src="{{ url_for('static', filename='images/LitchiBottle.png') }}" alt="Litchi"><div class="overlay">Litchi Twist</div></div>
+    <div class="card" data-href="{{ url_for('stock') }}" onclick="location.href=this.dataset.href"><img src="{{ url_for('static', filename='images/PineappleBottle.png') }}" alt="Pineapple"><div class="overlay">Pineapple Punch</div></div>
+    <div class="card" data-href="{{ url_for('stock') }}" onclick="location.href=this.dataset.href"><img src="{{ url_for('static', filename='images/CoconutBottle.png') }}" alt="Coconut"><div class="overlay">Mixed Fruit</div></div>
+  </div>
+</div>
+<footer><h3 align="center">Thank You </h3></footer>
+
+{% endblock %}

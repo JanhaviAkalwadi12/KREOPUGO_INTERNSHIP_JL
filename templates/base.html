@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="pg-{{ page }}">
+<head>
+<meta charset="UTF-8">
+{% block head_extra %}{% endblock %}
+<title>{% block title %}Juicy Life{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-page="{{ page }}">
+{% block sidebar %}
+<div class="sidebar">
+<h3>🍌 Juicy Life</h3>
+<a href="{{ url_for('landing') }}"{% if request.path == '/' %} class="active"{% endif %}>Home</a>
+<a href="{{ url_for('dashboard') }}"{% if request.path == '/dashboard' %} class="active"{% endif %}>Dashboard</a>
+<a href="{{ url_for('stock') }}"{% if request.path == '/stock' %} class="active"{% endif %}>Stock</a>
+<a href="{{ url_for('vendor') }}"{% if request.path == '/vendor' %} class="active"{% endif %}>Vendor</a>
+<a href="{{ url_for('billing') }}"{% if request.path == '/billing' %} class="active"{% endif %}>Billing</a>
+<a href="{{ url_for('report') }}"{% if request.path == '/report' %} class="active"{% endif %}>Report</a>
+<a href="{{ url_for('logout') }}" onclick="localStorage.removeItem('isLoggedIn')">Logout</a>
+</div>
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

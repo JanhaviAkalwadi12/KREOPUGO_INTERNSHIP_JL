@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% set page = 'vendor' %}
+
+{% block title %}Juicy Life - Vendor {% endblock %}
+
+{% block content %}
+<div class="main">
+<h2 style="margin-bottom:20px">Vendor Supply Management</h2>
+<div class="stats">
+  <div class="stat green"><h3 id="v1">0</h3><p>Total Vendors</p></div>
+  <div class="stat blue"><h3 id="v2">0</h3><p>Total Supply Qty</p></div>
+  <div class="stat orange"><h3 id="v3">0</h3><p>Expiring Soon</p></div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Add New Supply Entry</h3>
+<form id="vf" novalidate>
+<label>Vendor Name - Dropdown 1</label>
+<select id="vn" required>
+  <option value="">-- Select Vendor --</option>
+  <option>Vendor A - Dharwad Market</option>
+  <option>Vendor B - APMC</option>
+  <option>Vendor C - Local Farm</option>
+</select>
+
+<label>Purchase Type - Dropdown 2</label>
+<select id="pType" onchange="toggleLot()" required>
+  <option value="piece">Piece Form </option>
+  <option value="lot">Lot/Batch Form</option>
+</select>
+
+<label>Supply Item </label>
+<select id="si" required>
+  <option>Mango</option>
+  <option>Orange</option>
+  <option>Mosambi</option>
+  <option>Banana</option>
+  <option>Apple</option>
+  <option>Pomogranate</option>
+</select>
+
+<div id="lotFields">
+  <label>Pieces per Lot </label>
+  <input type="number" id="qtyPerLot" min="1" step="1" placeholder="Ex: 12" oninput="calc()">
+  <label>Number of Lots </label>
+  <input type="number" id="numLots" value="1" min="1" step="1" oninput="calc()">
+  <small>Total Qty = <b><span id="totalCalc">0</span> pcs</b></small>
+</div>
+
+<label id="qtyLabel">Supply Quantity (Qty)</label>
+<input type="number" id="sq" required min="1" step="1" placeholder="" oninput="calc()">
+
+<label>Total Price (Price)</label>
+<input type="number" id="totalPrice" required min="0.01" step="any" placeholder="" oninput="calc()">
+
+<div style="background:#fffbeb;padding:8px;border-radius:8px;font-size:12px;margin:5px 0">
+Per Fruit Cost = Total Price ÷ Qty<br>
+<b><span id="perPc">₹0</span></b> | Format: <b><span id="formatPreview">PIECE</span></b>
+</div>
+
+<label>Supply Date</label>
+<input type="date" id="sd" required>
+<label>Expiration Date</label>
+<input type="date" id="ed" required>
+<label>Contact Number</label>
+<input id="cn" required>
+<label>Payment Status</label>
+<select id="ps">
+  <option>Paid</option>
+  <option>Not Paid</option></select>
+<br><br><button class="btn-green" type="submit">Log Supply Entry + Update Stock</button>
+</form>
+</div>
+
+<div class="card">
+<h2>Active Supply </h2>
+<div class="table-wrap">
+<table><thead><tr>
+  <th>Vendor</th>
+  <th>Item</th>
+  <th>Type</th>
+  <th>Format</th>
+  <th>Qty</th>
+  <th>Price</th>
+  <th>Cost/Pc</th>
+  <th>Expiry</th>
+  <th>Status</th>
+  <th>Action</th>
+</tr></thead><tbody id="tb"></tbody></table>
+</div>
+</div>
+</div>
+</div>
+<div id="expiryPopup"></div>
+{% endblock %}

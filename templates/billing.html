@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% set page = 'billing' %}
+
+{% block title %}Billing - Juicy Life{% endblock %}
+
+{% block content %}
+<div class="main">
+<div class="wrap">
+<div class="card">
+<h2 style="font-size:18px">Create Bill</h2>
+<label>Customer</label><input id="customerName" placeholder="Customer name">
+<label>Juice / Fruit</label><select id="juiceSelect"></select>
+<div style="font-size:11px;color:#16a34a;font-weight:700;margin-top:6px" id="costInfo"></div>
+<label>Quantity</label><input type="number" id="qty" value="1" min="1">
+<button class="btn-green" onclick="addToBill()">+ Add to Bill</button>
+<table><thead><tr><th>Item</th><th>Price</th><th>Qty</th><th>Total</th><th></th></tr></thead><tbody id="billTable"></tbody></table>
+<div class="grand" id="grandText">Grand: ₹0</div>
+<div style="text-align:right;font-size:11px;color:#16a34a;font-weight:700" id="profitText">Profit hidden from customer</div>
+<button class="btn-black" onclick="generateAndPrint()">Generate Bill & Print + Update Stock</button>
+</div>
+<div class="invoice-outer" id="printArea">
+<div class="invoice">
+<div class="inv-header">
+<h1>Juicy<br>Life</h1>
+<div class="inv-sub">ASLI PHAL<br>ASLI TASTE<br>SQUEEZE THE DAY</div>
+<div class="inv-meta">NO <span id="invNo">0000250</span><br>DATE <span id="invDate">18/9/2026</span><br><span id="invCustomer" style="display:block;margin-top:2px">Customer: -</span></div>
+</div>
+<div class="inv-body">
+<table class="inv-table">
+<thead><tr><th>DESCRIPTION</th><th>PRICE ₹</th><th>QUANTITY<br>GLASS</th><th>TOTAL R</th></tr></thead>
+<tbody id="invItems"><tr><td colspan="4" style="text-align:center;padding:40px 0;color:#94a3b8">No items</td></tr></tbody>
+</table>
+<div class="inv-footer">
+<div class="inv-total" id="invTotal">TOTAL ₹ 0₹</div>
+<div class="thanks">THANKS FOR VISITING</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
